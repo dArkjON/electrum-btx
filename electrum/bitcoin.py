@@ -652,3 +652,6 @@ def is_minikey(text: str) -> bool:
 
 def minikey_to_private_key(text: str) -> bytes:
     return sha256(text)
+
+###################################### BIP32 ##############################
+#BIP32_PRIME = 0x80000000

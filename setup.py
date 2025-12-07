@@ -35,9 +35,9 @@ data_files = []
 if platform.system() in ['Linux', 'FreeBSD', 'DragonFly']:
     # note: we can't use absolute paths here. see #7787
     data_files += [
-        (os.path.join('share', 'applications'),               ['electrum.desktop']),
-        (os.path.join('share', 'pixmaps'),                    ['electrum/gui/icons/electrum.png']),
-        (os.path.join('share', 'icons/hicolor/128x128/apps'), ['electrum/gui/icons/electrum.png']),
+        (os.path.join('share', 'applications'),               ['electrum-btx.desktop']),
+        (os.path.join('share', 'pixmaps'),                    ['electrum/gui/icons/electrumBTX.png']),
+        (os.path.join('share', 'icons/hicolor/128x128/apps'), ['electrum/gui/icons/electrumBTX.png']),
     ]
 
 extras_require = {
@@ -56,7 +56,7 @@ extras_require['fast'] = extras_require['crypto']
 
 
 setup(
-    name="Electrum",
+    name="Electrum-BTX",
     version=version.ELECTRUM_VERSION,
     python_requires='>={}'.format(MIN_PYTHON_VERSION),
     install_requires=requirements,
@@ -71,12 +71,12 @@ setup(
     # package_data kwarg lists what gets put in site-packages when pip installing the tar.gz.
     # By specifying include_package_data=True, MANIFEST.in becomes responsible for both.
     include_package_data=True,
-    scripts=['electrum/electrum'],
+    scripts=['electrum/electrum-btx'],
     data_files=data_files,
-    description="Lightweight Bitcoin Wallet",
+    description="Lightweight Bitcore Wallet",
     author="Thomas Voegtlin",
     author_email="thomasv@electrum.org",
     license="MIT Licence",
-    url="https://electrum.org",
-    long_description="""Lightweight Bitcoin Wallet""",
+    url="https://github.com/dArkjON/electrum-btx",
+    long_description="""Lightweight Bitcore Wallet""",
 )

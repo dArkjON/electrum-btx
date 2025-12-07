@@ -1,0 +1,20 @@
+# If you want Electrum-BTX to appear in a Linux app launcher ("start menu"), install this by doing:
+# sudo desktop-file-install electrum.desktop
+# Note: This assumes $HOME/.local/bin is in your $PATH
+
+[Desktop Entry]
+Comment=Lightweight Bitcore Client
+Exec=electrum-btx %u
+GenericName[en_US]=Bitcore Wallet
+GenericName=Bitcore Wallet
+Icon=electrumBTX
+Name[en_US]=Electrum-BTX Bitcore Wallet
+Name=Electrum-BTX Bitcore Wallet
+Categories=Finance;Network;
+StartupNotify=true
+StartupWMClass=electrum
+Terminal=false
+Type=Application
+MimeType=x-scheme-handler/bitcore;x-scheme-handler/lightning;
+Keywords=crypto;currency;BTX
+

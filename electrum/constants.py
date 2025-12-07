@@ -55,8 +55,8 @@ def create_fallback_node_list(fallback_nodes_dict: dict[str, dict]) -> List[LNPe
     return fallback_nodes
 
 
-GIT_REPO_URL = "https://github.com/spesmilo/electrum"
-GIT_REPO_ISSUES_URL = "https://github.com/spesmilo/electrum/issues"
+GIT_REPO_URL = "https://github.com/dArkjON/electrum-btx"
+GIT_REPO_ISSUES_URL = "https://github.com/dArkjON/electrum-btx/issues"
 BIP39_WALLET_FORMATS = read_json('bip39_wallet_formats.json')
 
 
@@ -141,13 +141,13 @@ class BitcoinMainnet(AbstractNet):
     NET_NAME = "mainnet"
     TESTNET = False
     WIF_PREFIX = 0x80
-    ADDRTYPE_P2PKH = 0
-    ADDRTYPE_P2SH = 5
-    SEGWIT_HRP = "bc"
+    ADDRTYPE_P2PKH = 3
+    ADDRTYPE_P2SH = 125
+    SEGWIT_HRP = "btx"
     BOLT11_HRP = SEGWIT_HRP
-    GENESIS = "000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f"
+    GENESIS = "604148281e5c4b7f2487e5d03cd60d8e6f69411d613f6448034508cea52e9574"
     DEFAULT_PORTS = {'t': '50001', 's': '50002'}
-    BLOCK_HEIGHT_FIRST_LIGHTNING_CHANNELS = 497000
+    BLOCK_HEIGHT_FIRST_LIGHTNING_CHANNELS = 0
 
     XPRV_HEADERS = {
         'standard':    0x0488ade4,  # xprv
@@ -165,13 +165,9 @@ class BitcoinMainnet(AbstractNet):
         'p2wsh':       0x02aa7ed3,  # Zpub
     }
     XPUB_HEADERS_INV = inv_dict(XPUB_HEADERS)
-    BIP44_COIN_TYPE = 0
+    BIP44_COIN_TYPE = 160
     LN_REALM_BYTE = 0
-    LN_DNS_SEEDS = [
-        'nodes.lightning.directory.',
-        'lseed.bitcoinstats.com.',
-        'lseed.darosior.ninja',
-    ]
+    LN_DNS_SEEDS = []
 
     @classmethod
     def datadir_subdir(cls):
@@ -208,25 +204,13 @@ class BitcoinTestnet(AbstractNet):
     XPUB_HEADERS_INV = inv_dict(XPUB_HEADERS)
     BIP44_COIN_TYPE = 1
     LN_REALM_BYTE = 1
-    LN_DNS_SEEDS = [  # TODO investigate this again
-        #'test.nodes.lightning.directory.',  # times out.
-        #'lseed.bitcoinstats.com.',  # ignores REALM byte and returns mainnet peers...
-    ]
+    LN_DNS_SEEDS = []
 
 
 class BitcoinTestnet4(BitcoinTestnet):
 
     NET_NAME = "testnet4"
     GENESIS = "00000000da84f2bafbbc53dee25a72ae507ff4914b867c565be350b0da8bf043"
-    LN_DNS_SEEDS = []
-
-
-class BitcoinRegtest(BitcoinTestnet):
-
-    NET_NAME = "regtest"
-    SEGWIT_HRP = "bcrt"
-    BOLT11_HRP = SEGWIT_HRP
-    GENESIS = "0f9188f13cb7b2c71f2a335e3a4fc328bf5beb436012afca590b1a11466e2206"
     LN_DNS_SEEDS = []
 
 
@@ -242,23 +226,14 @@ class BitcoinSimnet(BitcoinTestnet):
     LN_DNS_SEEDS = []
 
 
-class BitcoinSignet(BitcoinTestnet):
-
-    NET_NAME = "signet"
-    BOLT11_HRP = "tbs"
-    GENESIS = "00000008819873e925422c1ff0f99f7cc9bbb232af63a077a480a3633bee1ef6"
-    LN_DNS_SEEDS = []
-
-
 class BitcoinMutinynet(BitcoinTestnet):
 
     NET_NAME = "mutinynet"
     BOLT11_HRP = "tbs"
     GENESIS = "00000008819873e925422c1ff0f99f7cc9bbb232af63a077a480a3633bee1ef6"
     LN_DNS_SEEDS = []
-
-
 NETS_LIST = tuple(all_subclasses(AbstractNet))  # type: Sequence[Type[AbstractNet]]
+
 NETS_LIST = tuple(sorted(NETS_LIST, key=lambda x: x.NET_NAME))
 
 assert len(NETS_LIST) == len(set([chain.NET_NAME for chain in NETS_LIST])), "NET_NAME must be unique for each concrete AbstractNet"

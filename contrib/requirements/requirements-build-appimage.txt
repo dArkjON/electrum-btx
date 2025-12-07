@@ -6,5 +6,5 @@ wheel
 # For reproducible builds, the version of Cython must be pinned down.
 # The pinned Cython must be installed before hidapi is built;
 # otherwise when installing hidapi, pip just downloads the latest Cython.
-# see https://github.com/spesmilo/electrum/issues/5859
+# see https://github.com/dArkjON/electrum-btx/issues/5859
 Cython>=0.27

@@ -20,7 +20,7 @@ Notes about compatibility with different macOS versions:
 - In general the binary is not guaranteed to run on an older version of macOS
   than what the build machine has. This is due to bundling the compiled Python into
   the [PyInstaller binary](https://github.com/pyinstaller/pyinstaller/issues/1191).
-- The [bundled version of Qt](https://github.com/spesmilo/electrum/issues/3685) also
+- The [bundled version of Qt](https://github.com/dArkjON/electrum-btx/issues/3685) also
   imposes a minimum supported macOS version.
 - If you want to build binaries that conform to the macOS "Gatekeeper", so as to
   minimise the warnings users get, the binaries need to be codesigned with a
@@ -28,7 +28,7 @@ Notes about compatibility with different macOS versions:
   need to be notarized by Apple's central server. To be able to build
   binaries that Apple will notarize (due to the requirements on the binaries themselves,
   e.g. hardened runtime) the build machine needs at least macOS 10.14.
-  See [#6128](https://github.com/spesmilo/electrum/issues/6128).
+  See [#6128](https://github.com/dArkjON/electrum-btx/issues/6128).
   - There are two tools that can be used to notarize a binary, both part of Xcode:
     the old `altool` and the newer `notarytool`. `altool`
     [was deprecated](https://developer.apple.com/news/?id=y5mjxqmn) by Apple.

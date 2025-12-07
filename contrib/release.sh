@@ -8,7 +8,7 @@
 # - builds all reproducible binaries,
 # - downloads binaries built by the release manager (from airlock if SFTPUSER, else from website),
 #   compares and signs them,
-# - and then uploads sigs (if SFTPUSER), else they can be submitted as PR to spesmilo/electrum-signatures
+# - and then uploads sigs (if SFTPUSER), else they can be submitted as PR to dArkjON/electrum-btx-signatures
 # Note: the .dmg should be built separately beforehand and copied into dist/
 #       (as it is built on a separate machine)
 #
@@ -34,7 +34,7 @@
 # - now airlock contains new binaries and two sigs for each
 # - deploy.sh will verify sigs and move binaries across airlock
 # - new binaries are now publicly available on uploadserver, but not linked from website yet
-# - other BUILDERS can now also try to reproduce binaries and open PRs with sigs against spesmilo/electrum-signatures
+# - other BUILDERS can now also try to reproduce binaries and open PRs with sigs against dArkjON/electrum-btx-signatures
 #   - these PRs can get merged as they come
 #   - run add_cosigner
 # - after some time, RM can run release_www.sh to create and commit website-update
@@ -287,7 +287,7 @@ EOF
     done
 
     if [ -z "$SSHUSER" ]; then
-        info "Signing successfully, now open a pull request with your signatures to spesmilo/electrum-signatures"
+        info "Signing successfully, now open a pull request with your signatures to dArkjON/electrum-btx-signatures"
         exit 0
     else
         # upload sigs

@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = Electrum
+title = Electrum-BTX
 
 # (str) Package name
-package.name = Electrum
+package.name = ElectrumBTX
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.electrum
@@ -153,7 +153,7 @@ android.accept_sdk_license = True
 #android.add_jars = foo.jar,bar.jar,path/to/more/*.jar
 #android.add_jars = lib/android/zbar.jar
 
-android.add_jars = .buildozer/android/platform/*/build/libs_collections/Electrum/jar/*.jar
+android.add_jars = .buildozer/android/platform/*/build/libs_collections/ElectrumBTX/jar/*.jar
 
 
 android.add_aars =
@@ -197,7 +197,7 @@ android.add_resources = electrum/gui/qml/android_res/layout:layout
 #android.ouya.icon.filename = %(source.dir)s/data/ouya_icon.png
 
 # (str) XML file to include as an intent filters in <activity> tag
-android.manifest.intent_filters = contrib/android/bitcoin_intent.xml
+android.manifest.intent_filters = contrib/android/bitcore_intent.xml
 
 # (str) launchMode to set for the main activity
 android.manifest.launch_mode = singleTask

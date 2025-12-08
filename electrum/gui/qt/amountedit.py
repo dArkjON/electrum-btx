@@ -11,7 +11,7 @@ from .util import char_width_in_lineedit, ColorScheme
 
 from electrum.util import (format_satoshis_plain, decimal_point_to_base_unit_name,
                            FEERATE_PRECISION, quantize_feerate, DECIMAL_POINT, UI_UNIT_NAME_FEERATE_SAT_PER_VBYTE)
-from electrum.bitcoin import COIN, TOTAL_COIN_SUPPLY_LIMIT_IN_BTC
+from electrum.bitcoin import COIN, TOTAL_COIN_SUPPLY_LIMIT_IN_BTX
 
 _NOT_GIVEN = object()  # sentinel value
 
@@ -120,7 +120,7 @@ class BTCAmountEdit(AmountEdit):
 
     def __init__(self, decimal_point, is_int=False, parent=None, *, max_amount=_NOT_GIVEN):
         if max_amount is _NOT_GIVEN:
-            max_amount = TOTAL_COIN_SUPPLY_LIMIT_IN_BTC * COIN
+            max_amount = TOTAL_COIN_SUPPLY_LIMIT_IN_BTX * COIN
         AmountEdit.__init__(self, self._base_unit, is_int, parent, max_amount=max_amount)
         self.decimal_point = decimal_point
 

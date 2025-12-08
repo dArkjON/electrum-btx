@@ -45,7 +45,7 @@ from .bip32 import BIP32Node
 from .util import to_bytes, bfh, chunks, is_hex_str, parse_max_spend
 from .bitcoin import (
     TYPE_ADDRESS, TYPE_SCRIPT, hash_160, hash160_to_p2sh, hash160_to_p2pkh, hash_to_segwit_addr, var_int,
-    TOTAL_COIN_SUPPLY_LIMIT_IN_BTC, COIN, opcodes, base_decode, base_encode, construct_witness, construct_script,
+    TOTAL_COIN_SUPPLY_LIMIT_IN_BTX, COIN, opcodes, base_decode, base_encode, construct_witness, construct_script,
     taproot_tweak_seckey
 )
 from .crypto import sha256d, sha256

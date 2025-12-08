@@ -5,7 +5,7 @@ from typing import Optional
 
 from . import bitcoin
 from .util import format_satoshis_plain
-from .bitcoin import COIN, TOTAL_COIN_SUPPLY_LIMIT_IN_BTC
+from .bitcoin import COIN, TOTAL_COIN_SUPPLY_LIMIT_IN_BTX
 from .lnaddr import lndecode, LnDecodeException
 
 # note: when checking against these, use .lower() to support case-insensitivity

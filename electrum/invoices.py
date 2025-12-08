@@ -11,7 +11,7 @@ from .bip21 import create_bip21_uri
 from .lnutil import hex_to_bytes
 from .lnaddr import lndecode, LnAddr
 from . import constants
-from .bitcoin import COIN, TOTAL_COIN_SUPPLY_LIMIT_IN_BTC
+from .bitcoin import COIN, TOTAL_COIN_SUPPLY_LIMIT_IN_BTX
 from .bitcoin import address_to_script
 from .transaction import PartialTxOutput
 from .crypto import sha256d
@@ -200,7 +200,7 @@ class BaseInvoice(StoredObject):
         if value is None:
             return
         if isinstance(value, int):
-            if not (0 <= value <= TOTAL_COIN_SUPPLY_LIMIT_IN_BTC * COIN * 1000):
+            if not (0 <= value <= TOTAL_COIN_SUPPLY_LIMIT_IN_BTX * COIN * 1000):
                 raise InvoiceError(f"amount is out-of-bounds: {value!r} msat")
         elif isinstance(value, str):
             if value != '!':

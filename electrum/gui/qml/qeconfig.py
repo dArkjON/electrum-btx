@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 
 from PyQt6.QtCore import pyqtProperty, pyqtSignal, pyqtSlot, QObject, QRegularExpression
 
-from electrum.bitcoin import TOTAL_COIN_SUPPLY_LIMIT_IN_BTC
+from electrum.bitcoin import TOTAL_COIN_SUPPLY_LIMIT_IN_BTX
 from electrum.i18n import set_language, languages
 from electrum.logging import get_logger
 from electrum.util import base_unit_name_to_decimal_point
@@ -96,8 +96,8 @@ class QEConfig(AuthMixin, QObject):
     def btcAmountRegex(self):
         decimal_point = base_unit_name_to_decimal_point(self.config.get_base_unit())
         max_digits_before_dp = (
-            len(str(TOTAL_COIN_SUPPLY_LIMIT_IN_BTC))
-            + (base_unit_name_to_decimal_point("BTC") - decimal_point))
+            len(str(TOTAL_COIN_SUPPLY_LIMIT_IN_BTX))
+            + (base_unit_name_to_decimal_point("BTX") - decimal_point))
         exp = '[0-9]{0,%d}' % max_digits_before_dp
         if decimal_point > 0:
             exp += '\\.'

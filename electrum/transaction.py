@@ -882,7 +882,7 @@ def parse_witness(vds: BCDataStream, txin: TxInput) -> None:
 
 def parse_output(vds: BCDataStream) -> TxOutput:
     value = vds.read_int64()
-    if value > TOTAL_COIN_SUPPLY_LIMIT_IN_BTC * COIN:
+    if value > TOTAL_COIN_SUPPLY_LIMIT_IN_BTX * COIN:
         raise SerializationError('invalid output amount (too large)')
     if value < 0:
         raise SerializationError('invalid output amount (negative)')

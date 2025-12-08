@@ -61,7 +61,7 @@ def parse_bip21_URI(uri: str) -> dict:
                 amount = Decimal(m.group(1)) * pow(Decimal(10), k)
             else:
                 amount = Decimal(am) * COIN
-            if amount > TOTAL_COIN_SUPPLY_LIMIT_IN_BTC * COIN or amount <= 0:
+            if amount > TOTAL_COIN_SUPPLY_LIMIT_IN_BTX * COIN or amount <= 0:
                 raise InvalidBitcoinURI(f"amount is out-of-bounds: {amount!r} BTC")
             out['amount'] = int(amount)
         except Exception as e:

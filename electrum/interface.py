@@ -1262,7 +1262,9 @@ class Interface(Logger):
 
     @classmethod
     def client_name(cls) -> str:
-        return f'electrum-btx/{version.ELECTRUM_VERSION}'
+        # Use legacy 'electrum' identifier for BTX server compatibility
+        # Servers recognize 'electrum/X.Y.Z' but not 'electrum-btx/X.Y.Z'
+        return f'electrum/{version.ELECTRUM_VERSION}'
 
     def is_tor(self):
         return self.host.endswith('.onion')

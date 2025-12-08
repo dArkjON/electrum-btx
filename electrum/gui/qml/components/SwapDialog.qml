@@ -65,7 +65,7 @@ ElDialog {
                     Layout.preferredHeight: constants.iconSizeSmall
                     source: swaphelper.isReverse
                         ? '../../icons/lightning.png'
-                        : '../../icons/bitcoin.png'
+                        : '../../icons/electrumBTX.png'
                 }
             }
 
@@ -96,7 +96,7 @@ ElDialog {
                     Layout.preferredWidth: constants.iconSizeSmall
                     Layout.preferredHeight: constants.iconSizeSmall
                     source: swaphelper.isReverse
-                        ? '../../icons/bitcoin.png'
+                        ? '../../icons/electrumBTX.png'
                         : '../../icons/lightning.png'
                 }
             }

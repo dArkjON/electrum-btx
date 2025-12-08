@@ -10,7 +10,8 @@ PROJECT_ROOT="$(dirname "$(readlink -e "$0")")/../.."
 PROJECT_ROOT_OR_FRESHCLONE_ROOT="$PROJECT_ROOT"
 CONTRIB="$PROJECT_ROOT/contrib"
 CONTRIB_WINE="$CONTRIB/build-wine"
-BUILD_UID=$(/usr/bin/stat -c %u "$PROJECT_ROOT")
+# BUILD_UID=$(/usr/bin/stat -c %u "$PROJECT_ROOT")
+BUILD_UID=1000  # Force non-root user for docker build
 
 . "$CONTRIB"/build_tools_util.sh
 
@@ -56,7 +57,24 @@ if [ ! -z "$ELECBUILD_COMMIT" ] ; then  # fresh clone (reproducible build)
         sudo chown -R 1000:1000 "$FRESH_CLONE"
     fi
 fi
-docker run -it \
+# Check if we have a TTY, only then use -it flag
+TTY_FLAG=""
+if [ -t 0 ]; then
+    TTY_FLAG="-it"
+fi
+
+# Fix permissions for git repository in container
+if [ ! -z "$ELECBUILD_COMMIT" ] ; then  # fresh clone (reproducible build)
+    if [ $(id -u) != "1000" ] || [ $(id -g) != "1000" ] ; then
+        info "need to chown -R FRESH_CLONE dir. prompting for sudo."
+        sudo chown -R 1000:1000 "$FRESH_CLONE"
+    fi
+else
+    # Fix permissions for local build
+    sudo chown -R 1000:1000 "$PROJECT_ROOT"
+fi
+
+docker run $TTY_FLAG \
     --name electrum-wine-builder-cont \
     -v "$PROJECT_ROOT_OR_FRESHCLONE_ROOT":/opt/wine64/drive_c/electrum \
     --rm \

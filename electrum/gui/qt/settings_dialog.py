@@ -94,7 +94,7 @@ class SettingsDialog(QDialog, QtEventListener):
                 self.need_restart = True
         lang_combo.currentIndexChanged.connect(on_lang)
 
-        nz_label = HelpLabel.from_configvar(self.config.cv.BTC_AMOUNTS_FORCE_NZEROS_AFTER_DECIMAL_POINT)
+        nz_label = HelpLabel.from_configvar(self.config.cv.BTX_AMOUNTS_FORCE_NZEROS_AFTER_DECIMAL_POINT)
         nz = QSpinBox()
         nz.setMinimum(0)
         nz.setMaximum(self.config.decimal_point)
@@ -193,7 +193,7 @@ class SettingsDialog(QDialog, QtEventListener):
         # units
         units = base_units_list
         msg = (_('Base unit of your wallet.')
-               + '\n1 BTC = 1000 mBTC. 1 mBTC = 1000 bits. 1 bit = 100 sat.\n'
+               + '\n1 BTX = 1000 mBTX. 1 mBTX = 1000 bits. 1 bit = 100 sat.\n'
                + _('This setting affects the Send tab, and all balance related fields.'))
         unit_label = HelpLabel(_('Base unit') + ':', msg)
         unit_combo = QComboBox()

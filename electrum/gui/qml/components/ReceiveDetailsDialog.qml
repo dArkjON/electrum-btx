@@ -101,7 +101,7 @@ ElDialog {
             FlatButton {
                 Layout.fillWidth: true
                 text: qsTr('Onchain')
-                icon.source: '../../icons/bitcoin.png'
+                icon.source: '../../icons/electrumBTX.png'
                 onClicked: { dialog.isLightning = false; doAccept() }
             }
             FlatButton {

@@ -1262,7 +1262,7 @@ class Interface(Logger):
 
     @classmethod
     def client_name(cls) -> str:
-        return f'electrum/{version.ELECTRUM_VERSION}'
+        return f'electrum-btx/{version.ELECTRUM_VERSION}'
 
     def is_tor(self):
         return self.host.endswith('.onion')

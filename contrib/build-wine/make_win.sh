@@ -35,6 +35,9 @@ export WINE_PYTHON="wine $WINE_PYHOME/python.exe -B"
 
 . "$CONTRIB"/build_tools_util.sh
 
+# Fix git safe directory issue
+git config --global --add safe.directory "$PROJECT_ROOT"
+
 git -C "$PROJECT_ROOT" rev-parse 2>/dev/null || fail "Building outside a git clone is not supported."
 
 info "Clearing $here/build and $here/dist..."

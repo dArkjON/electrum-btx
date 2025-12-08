@@ -273,9 +273,9 @@ class SwapDialog(WindowModalDialog, QtEventListener):
     def update(self):
         sm = self.swap_manager
         w_base_unit = self.window.base_unit()
-        send_icon = read_QIcon("lightning.png" if self.is_reverse else "bitcoin.png")
+        send_icon = read_QIcon("lightning.png" if self.is_reverse else "electrumBTX.png")
         self.send_label.setIcon(send_icon)
-        recv_icon = read_QIcon("lightning.png" if not self.is_reverse else "bitcoin.png")
+        recv_icon = read_QIcon("lightning.png" if not self.is_reverse else "electrumBTX.png")
         self.recv_label.setIcon(recv_icon)
         self.description_label.setText(self.get_description())
         self.description_label.repaint()  # macOS hack for #6269

@@ -152,8 +152,8 @@ class ElectrumGui(BaseElectrumGui, Logger):
         if hasattr(QtCore.Qt, "AA_ShareOpenGLContexts"):
             QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts)
         if hasattr(QGuiApplication, 'setDesktopFileName'):
-            QGuiApplication.setDesktopFileName('electrum')
-        QGuiApplication.setApplicationName("Electrum")
+            QGuiApplication.setDesktopFileName('electrum-btx')
+        QGuiApplication.setApplicationName("Electrum-BTX")
         self.gui_thread = threading.current_thread()
         self.windows = []  # type: List[ElectrumWindow]
         self.open_file_efilter = OpenFileEventFilter(self.windows)
@@ -164,7 +164,7 @@ class ElectrumGui(BaseElectrumGui, Logger):
             self.app.installEventFilter(self.screenshot_protection_efilter)
         # explicitly set 'AA_DontShowIconsInMenus' False so menu icons are shown on MacOS
         self.app.setAttribute(Qt.ApplicationAttribute.AA_DontShowIconsInMenus, on=False)
-        self.app.setWindowIcon(read_QIcon("electrum.png"))
+        self.app.setWindowIcon(read_QIcon("electrumBTX.png"))
         self.translator = ElectrumTranslator()
         self.app.installTranslator(self.translator)
         self._cleaned_up = False
@@ -183,7 +183,7 @@ class ElectrumGui(BaseElectrumGui, Logger):
 
     def _init_tray(self):
         self.tray = QSystemTrayIcon(self.tray_icon(), None)
-        self.tray.setToolTip('Electrum')
+        self.tray.setToolTip('Electrum-BTX')
         self.tray.activated.connect(self.tray_activated)
         self.build_tray_menu()
         self.tray.show()
@@ -238,7 +238,7 @@ class ElectrumGui(BaseElectrumGui, Logger):
             submenu.addAction(_("Close"), window.close)
         m.addAction(_("Dark/Light"), self.toggle_tray_icon)
         m.addSeparator()
-        m.addAction(_("Exit Electrum"), self.app.quit)
+        m.addAction(_("Exit Electrum-BTX"), self.app.quit)
 
     def tray_icon(self):
         if self.dark_icon:

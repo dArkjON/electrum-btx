@@ -107,11 +107,11 @@ class QEConfig(AuthMixin, QObject):
     thousandsSeparatorChanged = pyqtSignal()
     @pyqtProperty(bool, notify=thousandsSeparatorChanged)
     def thousandsSeparator(self):
-        return self.config.BTC_AMOUNTS_ADD_THOUSANDS_SEP
+        return self.config.BTX_AMOUNTS_ADD_THOUSANDS_SEP
 
     @thousandsSeparator.setter
     def thousandsSeparator(self, checked):
-        self.config.BTC_AMOUNTS_ADD_THOUSANDS_SEP = checked
+        self.config.BTX_AMOUNTS_ADD_THOUSANDS_SEP = checked
         self.config.amt_add_thousands_sep = checked
         self.thousandsSeparatorChanged.emit()
 
@@ -360,7 +360,7 @@ class QEConfig(AuthMixin, QObject):
 
     # TODO delegate all this to config.py/util.py
     def decimal_point(self):
-        return self.config.BTC_AMOUNTS_DECIMAL_POINT
+        return self.config.BTX_AMOUNTS_DECIMAL_POINT
 
     def max_precision(self):
         return self.decimal_point() + 0  # self.extra_precision

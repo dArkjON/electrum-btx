@@ -1111,8 +1111,9 @@ class Interface(Logger):
                 num_headers = await self._fast_forward_chain(
                     height=height, tip=next_height)
                 if num_headers == 0:
-                    if height < constants.net.max_checkpoint():
-                        raise GracefulDisconnect('server chain conflicts with checkpoints or genesis')
+                    # BTX: Disable checkpoint validation to allow unlimited sync
+                    # if height < constants.net.max_checkpoint():
+                    #     raise GracefulDisconnect('server chain conflicts with checkpoints or genesis')
                     last, height = await self.step(height)
                     continue
                 # report progress to gui/etc
@@ -1248,8 +1249,9 @@ class Interface(Logger):
             can_connect = blockchain.can_connect(header)
             if chain or can_connect:
                 return False
-            if checkp:
-                raise GracefulDisconnect("server chain conflicts with checkpoints")
+            # BTX: Disable checkpoint validation to allow unlimited sync
+            # if checkp:
+            #     raise GracefulDisconnect("server chain conflicts with checkpoints")
             return True
 
         bad, bad_header = height, header

@@ -55,6 +55,7 @@ electrum/*.so.*
 debug_*
 test_*
 start_*
+generate_checkpoints.py
 electrum/*.dll
 electrum/*.dylib
 contrib/osx/*.dylib

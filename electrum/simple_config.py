@@ -796,7 +796,7 @@ Warning: setting this to too low will result in lots of payment failures."""),
     GUI_QT_HISTORY_TAB_SHOW_TOOLBAR = ConfigVar('show_toolbar_history', default=False, type_=bool)
     GUI_QT_ADDRESSES_TAB_SHOW_TOOLBAR = ConfigVar('show_toolbar_addresses', default=False, type_=bool)
     GUI_QT_TX_DIALOG_FETCH_TXIN_DATA = ConfigVar(
-        'tx_dialog_fetch_txin_data', default=False, type_=bool,
+        'tx_dialog_fetch_txin_data', default=True, type_=bool,
         short_desc=lambda: _('Download missing data'),
         long_desc=lambda: _(
             'Download parent transactions from the network.\n'

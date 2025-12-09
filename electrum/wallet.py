@@ -3840,11 +3840,13 @@ class Deterministic_Wallet(Abstract_Wallet):
         self.synchronize()
 
     def _init_lnworker(self):
+        # BTX: Disable Lightning worker for BTX wallet - Lightning not supported
         # lightning_privkey2 is not deterministic (legacy wallets, bip39)
-        ln_xprv = self.db.get('lightning_xprv') or self.db.get('lightning_privkey2')
+        # ln_xprv = self.db.get('lightning_xprv') or self.db.get('lightning_privkey2')
         # lnworker can only be initialized once receiving addresses are available
         # therefore we instantiate lnworker in DeterministicWallet
-        self.lnworker = LNWallet(self, ln_xprv) if ln_xprv else None
+        # self.lnworker = LNWallet(self, ln_xprv) if ln_xprv else None
+        self.lnworker = None  # BTX: Always disable Lightning for BTX
 
     def has_seed(self):
         return self.keystore.has_seed()

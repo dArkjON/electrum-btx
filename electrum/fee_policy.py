@@ -435,7 +435,7 @@ class FeeTimeEstimates:
             fee = self.data.get(num_blocks)
             if fee is not None:
                 fee = int(fee)
-        # fallback for regtest
-        if fee is None and constants.net is constants.BitcoinRegtest:
-            return FEERATE_REGTEST_STATIC_FEE
+        # BTX: No BitcoinRegtest network, use fallback fee
+        # if fee is None and constants.net is constants.BitcoinRegtest:
+        #     return FEERATE_REGTEST_STATIC_FEE
         return fee

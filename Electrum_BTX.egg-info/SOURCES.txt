@@ -3,12 +3,16 @@ LICENCE
 MANIFEST.in
 README.md
 RELEASE-NOTES
+debug_btx_connection.py
+debug_electrum_flow.py
+electrum-btx.desktop
 electrum.desktop
 generate_checkpoints.py
 org.electrum.electrum.metainfo.xml
 run_electrum
 setup.cfg
 setup.py
+test_fix.py
 Electrum_BTX.egg-info/PKG-INFO
 Electrum_BTX.egg-info/SOURCES.txt
 Electrum_BTX.egg-info/dependency_links.txt

@@ -907,9 +907,12 @@ class Interface(Logger):
             raise Exception(f"{repr(height)} is not a block height")
         if not is_non_negative_integer(tip):
             raise Exception(f"{repr(tip)} is not a block height")
-        if not (height > constants.net.max_checkpoint()
+        # BTX: Allow syncing from max_checkpoint height to continue past checkpoints
+        # This matches the working approach from Electrum-BTX 3.3.9
+        # The original check prevented syncing from exactly max_checkpoint (167,327)
+        if not (height >= constants.net.max_checkpoint()
                 or height == 0 == constants.net.max_checkpoint()):
-            raise Exception(f"{height=} must be > cp={constants.net.max_checkpoint()}")
+            raise Exception(f"{height=} must be >= cp={constants.net.max_checkpoint()}")
         assert height <= tip, f"{height=} must be <= {tip=}"
         # Request a few chunks of headers concurrently.
         # tradeoffs:

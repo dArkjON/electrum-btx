@@ -389,7 +389,7 @@ class SettingsDialog(QDialog, QtEventListener):
         units_widgets = []
         units_widgets.append((unit_label, unit_combo))
         units_widgets.append((nz_label, nz))
-        units_widgets.append((msat_cb, None))
+        # units_widgets.append((msat_cb, None))  # BTX: Remove Lightning msat option from units
         units_widgets.append((thousandsep_cb, None))
         lightning_widgets = []
         lightning_widgets.append((trampoline_cb, None))
@@ -409,7 +409,7 @@ class SettingsDialog(QDialog, QtEventListener):
             (gui_widgets, _('Appearance')),
             (units_widgets, _('Units')),
             (fiat_widgets, _('Fiat')),
-            (lightning_widgets, _('Lightning')),
+            # (lightning_widgets, _('Lightning')),  # BTX: Remove Lightning tab from settings
             (misc_widgets, _('Misc')),
         ]
         for widgets, name in tabs_info:

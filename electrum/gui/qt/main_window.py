@@ -804,7 +804,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, Logger, QtEventListener):
         self.view_menu = menubar.addMenu(_("&View"))
         add_toggle_action(self.addresses_tab)
         add_toggle_action(self.utxo_tab)
-        add_toggle_action(self.channels_tab)
+        # add_toggle_action(self.channels_tab)  # BTX: Remove Lightning Network channels from menu
         add_toggle_action(self.contacts_tab)
         add_toggle_action(self.console_tab)
         add_toggle_action(self.notes_tab)

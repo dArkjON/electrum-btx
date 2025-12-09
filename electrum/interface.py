@@ -80,7 +80,9 @@ ca_path = certifi.where()
 BUCKET_NAME_OF_ONION_SERVERS = 'onion'
 
 _KNOWN_NETWORK_PROTOCOLS = {'t', 's'}
-PREFERRED_NETWORK_PROTOCOL = 's'
+# BTX: Use plain text protocol as preferred since BTX servers work better with 't'
+# SSL connections to BTX servers fail with WRONG_VERSION_NUMBER error
+PREFERRED_NETWORK_PROTOCOL = 't'
 assert PREFERRED_NETWORK_PROTOCOL in _KNOWN_NETWORK_PROTOCOLS
 
 MAX_NUM_HEADERS_PER_REQUEST = 2016
@@ -774,7 +776,8 @@ class Interface(Logger):
             host=self.host, port=self.port,
             ssl=sslc,
             proxy=self.proxy,
-            transport=PaddedRSTransport,
+            # BTX: Use standard RSClient transport for compatibility with old servers
+            # transport=PaddedRSTransport,
         ) as session:
             asyncio_transport = session.transport._asyncio_transport  # type: asyncio.BaseTransport
             ssl_object = asyncio_transport.get_extra_info("ssl_object")  # type: ssl.SSLObject
@@ -952,7 +955,8 @@ class Interface(Logger):
             host=self.host, port=self.port,
             ssl=ssl_context,
             proxy=self.proxy,
-            transport=PaddedRSTransport,
+            # BTX: Use standard RSClient transport for compatibility with old servers
+            # transport=PaddedRSTransport,
         ) as session:
             self.session = session  # type: NotificationSession
             self.session.set_default_timeout(self.network.get_network_timeout_seconds(NetworkTimeout.Generic))

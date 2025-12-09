@@ -1,6 +1,6 @@
 ELECTRUM_VERSION = '4.6.2'       # version of the client package
 
-PROTOCOL_VERSION = '1.1'     # protocol version requested (BTX compatibility)
+PROTOCOL_VERSION = '1.4'     # protocol version requested (BTX server compatibility)
 
 # The hash of the mnemonic seed must begin with this
 SEED_PREFIX        = '01'      # Standard wallet

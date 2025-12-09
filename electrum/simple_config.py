@@ -411,7 +411,7 @@ class SimpleConfig(Logger):
         base_unit = self.user_config.get('base_unit')
         if isinstance(base_unit, str):
             self._set_key_in_user_config('base_unit', None)
-            map_ = {'btc': 8, 'mbtc': 5, 'ubtc': 2, 'bits': 2, 'sat': 0}
+            map_ = {'btx': 8, 'mbtx': 5, 'ubtx': 2, 'bits': 2, 'sat': 0}  # BTX: Updated for BitCore units
             decimal_point = map_.get(base_unit.lower())
             self._set_key_in_user_config('decimal_point', decimal_point)
         self.set_key('config_version', 3)
@@ -861,7 +861,7 @@ Warning: setting this to too low will result in lots of payment failures."""),
     )
 
     BLOCK_EXPLORER = ConfigVar(
-        'block_explorer', default='Blockstream.info', type_=str,
+        'block_explorer', default='bitcore.wtf', type_=str,  # BTX: Changed to bitcore.wtf
         short_desc=lambda: _('Online Block Explorer'),
         long_desc=lambda: _('Choose which online block explorer to use for functions that open a web browser'),
     )

@@ -34,7 +34,7 @@ CCY_PRECISIONS = {'BHD': 3, 'BIF': 0, 'BYR': 0, 'CLF': 4, 'CLP': 0,
                   'RWF': 0, 'TND': 3, 'UGX': 0, 'UYI': 0, 'VND': 0,
                   'VUV': 0, 'XAF': 0, 'XAU': 4, 'XOF': 0, 'XPF': 0,
                   # Cryptocurrencies
-                  'BTC': 8, 'LTC': 6, 'XRP': 4, 'ETH': 8,
+                  'BTX': 8, 'BTC': 8, 'LTC': 6, 'XRP': 4, 'ETH': 8,  # BTX: Added BitCore
                   }
 
 SPOT_RATE_REFRESH_TARGET = 150      # approx. every 2.5 minutes, try to refresh spot price
@@ -459,8 +459,9 @@ class CoinGecko(ExchangeBase):
         # Setting `num_days = "max"` started erroring (around 2024-04) with:
         # > Your request exceeds the allowed time range. Public API users are limited to querying
         # > historical data within the past 365 days. Upgrade to a paid plan to enjoy full historical data access
+        # BTX: Changed from bitcoin to bitcore for BitCore support
         history = await self.get_json('api.coingecko.com',
-                                      f"/api/v3/coins/bitcoin/market_chart?vs_currency={ccy}&days={num_days}")
+                                      f"/api/v3/coins/bitcore/market_chart?vs_currency={ccy}&days={num_days}")
 
         return dict([(timestamp_to_datetime(h[0]/1000, utc=True).strftime('%Y-%m-%d'), str(h[1]))
                      for h in history['prices']])

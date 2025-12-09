@@ -88,11 +88,11 @@ def all_subclasses(cls) -> Set:
 ca_path = certifi.where()
 
 
-base_units = {'BTC':8, 'mBTC':5, 'bits':2, 'sat':0}
+base_units = {'BTX':8, 'mBTX':5, 'bits':2, 'sat':0}  # BTX: BitCore units, replacing BTC/mBTC
 base_units_inverse = inv_dict(base_units)
-base_units_list = ['BTC', 'mBTC', 'bits', 'sat']  # list(dict) does not guarantee order
+base_units_list = ['BTX', 'mBTX', 'bits', 'sat']  # list(dict) does not guarantee order
 
-DECIMAL_POINT_DEFAULT = 5  # mBTC
+DECIMAL_POINT_DEFAULT = 8  # BTX (changed from mBTC=5 to BTX=8 for BTX-specific defaults)
 
 
 class UnknownBaseUnit(Exception): pass
@@ -970,13 +970,15 @@ def delta_time_str(distance_in_time: timedelta, *, include_seconds: bool = False
 
 
 mainnet_block_explorers = {
+    'bitcore.wtf': ('https://bitcore.wtf/',
+                        {'tx': 'tx/', 'addr': 'address/'}),  # BTX: Primary BitCore explorer
     'bitcore.cc': ('https://insight.bitcore.cc/',
                         {'tx': 'tx/', 'addr': 'address/'}),
     'cryptoID': ('https://chainz.cryptoid.info/btx/',
                         {'tx': 'tx.dws?', 'addr': 'address.dws?'}),
     'explorer.bitcore.cc': ('https://explorer.bitcore.cc/BTX/mainnet/',
                         {'tx': 'tx/', 'addr': 'address/'}),
-    'system default': ('https://insight.bitcore.cc/',
+    'system default': ('https://bitcore.wtf/',  # BTX: Changed to bitcore.wtf
                         {'tx': 'tx/', 'addr': 'address/'}),
 }
 

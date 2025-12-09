@@ -69,20 +69,22 @@ class ReceiveTab(QWidget, MessageBoxMixin, Logger):
 
         self.clear_invoice_button = QPushButton(_('Clear'))
         self.clear_invoice_button.clicked.connect(self.do_clear)
-        text = _('Onchain') if self.wallet.has_lightning() else _('Request')
+        # BTX: Change 'Onchain' to tab name for translation and remove Lightning button
+        text = _('Receive') if self.wallet.has_lightning() else _('Receive')
         self.create_onchain_invoice_button = QPushButton(text)
         self.create_onchain_invoice_button.setIcon(read_QIcon("electrumBTX.png"))
         self.create_onchain_invoice_button.clicked.connect(lambda: self.create_invoice(False))
-        self.create_lightning_invoice_button = QPushButton(_('Lightning'))
-        self.create_lightning_invoice_button.setIcon(read_QIcon("lightning.png"))
-        self.create_lightning_invoice_button.clicked.connect(lambda: self.create_invoice(True))
-        self.create_lightning_invoice_button.setVisible(self.wallet.has_lightning())
+        # BTX: Remove Lightning invoice button
+        # self.create_lightning_invoice_button = QPushButton(_('Lightning'))
+        # self.create_lightning_invoice_button.setIcon(read_QIcon("lightning.png"))
+        # self.create_lightning_invoice_button.clicked.connect(lambda: self.create_invoice(True))
+        # self.create_lightning_invoice_button.setVisible(self.wallet.has_lightning())
 
         self.receive_buttons = buttons = QHBoxLayout()
         buttons.addWidget(self.clear_invoice_button)
         buttons.addStretch(1)
         buttons.addWidget(self.create_onchain_invoice_button)
-        buttons.addWidget(self.create_lightning_invoice_button)
+        # buttons.addWidget(self.create_lightning_invoice_button)  # BTX: Remove Lightning button
         grid.addLayout(buttons, 4, 1, 1, -1)
 
         self.receive_e = QTextEdit()

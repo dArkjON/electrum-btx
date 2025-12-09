@@ -445,9 +445,26 @@ class CoinDesk(ExchangeBase):
 class CoinGecko(ExchangeBase):
 
     async def get_rates(self, ccy):
-        json = await self.get_json('api.coingecko.com', '/api/v3/exchange_rates')
-        return dict([(ccy.upper(), to_decimal(d['value']))
-                     for ccy, d in json['rates'].items()])
+        # BTX: Use BTX-specific API endpoint instead of exchange_rates
+        # exchange_rates returns BTC-based rates, we need BTX rates
+
+        # Handle comma-separated currencies
+        if isinstance(ccy, str):
+            ccys = ccy.split(',')
+        else:
+            ccys = [str(ccy)]
+
+        # Request BTX rates for all currencies at once
+        ccys_param = ','.join([c.lower() for c in ccys])
+        json = await self.get_json('api.coingecko.com',
+                                      f'/api/v3/simple/price?ids=bitcore&vs_currencies={ccys_param}')
+        if 'bitcore' not in json:
+            return {}
+        rates = json['bitcore']
+        # Convert to expected format: dict of currency_upper -> value
+        return dict([(currency.upper(), to_decimal(rate))
+                     for currency, rate in rates.items()
+                     if currency != 'btc'])  # Exclude BTC as we want BTX rates
 
     def history_ccys(self):
         # CoinGecko seems to have historical data for all ccys it supports

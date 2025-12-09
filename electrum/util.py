@@ -971,15 +971,13 @@ def delta_time_str(distance_in_time: timedelta, *, include_seconds: bool = False
 
 mainnet_block_explorers = {
     'bitcore.wtf': ('https://bitcore.wtf/',
-                        {'tx': 'tx/', 'addr': 'address/'}),  # BTX: Primary BitCore explorer
-    'bitcore.cc': ('https://insight.bitcore.cc/',
-                        {'tx': 'tx/', 'addr': 'address/'}),
+                        {'tx': 'tx.php?hash=', 'addr': 'wallet.php?address='}),  # BTX: Primary BitCore explorer
     'cryptoID': ('https://chainz.cryptoid.info/btx/',
                         {'tx': 'tx.dws?', 'addr': 'address.dws?'}),
-    'explorer.bitcore.cc': ('https://explorer.bitcore.cc/BTX/mainnet/',
+    'explorer.bitcore.cc': ('https://explorer.bitcore.cc/#/BTX/mainnet/home',
                         {'tx': 'tx/', 'addr': 'address/'}),
     'system default': ('https://bitcore.wtf/',  # BTX: Changed to bitcore.wtf
-                        {'tx': 'tx/', 'addr': 'address/'}),
+                        {'tx': 'tx.php?hash=', 'addr': 'wallet.php?address='}),
 }
 
 testnet_block_explorers = {

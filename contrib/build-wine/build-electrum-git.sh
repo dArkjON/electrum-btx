@@ -23,7 +23,9 @@ info "preparing electrum-locale."
     rm -r "$PROJECT_ROOT/electrum/locale/locale"/*/electrum.po
 )
 
-find -exec touch -h -d '2000-11-11T11:11:11+00:00' {} +
+# Remove __pycache__ before touching files to avoid permission issues
+find . -type d -name __pycache__ -exec rm -rf {} + 2>/dev/null || true
+find -exec touch -h -d '2000-11-11T11:11:11+00:00' {} + 2>/dev/null || true
 popd
 
 

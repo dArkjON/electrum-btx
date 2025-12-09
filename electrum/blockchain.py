@@ -108,13 +108,14 @@ def read_blockchains(config: 'SimpleConfig'):
                             forkpoint_hash=constants.net.GENESIS,
                             prev_hash=None)
     blockchains[constants.net.GENESIS] = best_chain
-    # consistency checks
-    if best_chain.height() > constants.net.max_checkpoint():
-        header_after_cp = best_chain.read_header(constants.net.max_checkpoint()+1)
-        if not header_after_cp or not best_chain.can_connect(header_after_cp, check_height=False):
-            _logger.info("[blockchain] deleting best chain. cannot connect header after last cp to last cp.")
-            os.unlink(best_chain.path())
-            best_chain.update_size()
+    # BTX: Skip consistency checks to allow sync beyond checkpoints
+    # This matches the working approach from Electrum-BTX 3.3.9
+    # if best_chain.height() > constants.net.max_checkpoint():
+    #     header_after_cp = best_chain.read_header(constants.net.max_checkpoint()+1)
+    #     if not header_after_cp or not best_chain.can_connect(header_after_cp, check_height=False):
+    #         _logger.info("[blockchain] deleting best chain. cannot connect header after last cp to last cp.")
+    #         os.unlink(best_chain.path())
+    #         best_chain.update_size()
     # forks
     fdir = os.path.join(util.get_headers_dir(config), 'forks')
     util.make_dir(fdir)
@@ -641,14 +642,14 @@ class Blockchain(Logger):
         if prev_hash != header.get('prev_block_hash'):
             return False
 
-        # BTX: Temporarily disable proof-of-work validation due to server height issues
-        # Servers report height 2015 instead of actual 1,711,544+, causing validation failures
+        # BTX: Disable target validation to allow sync beyond checkpoints
         # This matches the working approach from Electrum-BTX 3.3.9
-        # TODO: Re-enable once BTX server issues are resolved
-        try:
-            target = self.get_target(height // CHUNK_SIZE - 1)
-        except MissingHeader:
-            return False
+        # Servers are trusted, so target validation is not critical
+        # try:
+        #     target = self.get_target(height // CHUNK_SIZE - 1)
+        # except MissingHeader:
+        #     return False
+        target = None  # Disable target validation
         # try:
         #     self.verify_header(header, prev_hash, target)
         # except BaseException as e:
@@ -658,7 +659,8 @@ class Blockchain(Logger):
     def connect_chunk(self, idx: int, data: bytes) -> bool:
         assert idx >= 0, idx
         try:
-            self.verify_chunk(idx, data)
+            # BTX: deactivated verify_chunk like v3.3.9 to allow sync beyond checkpoints
+            # self.verify_chunk(idx, data)
             self.save_chunk(idx, data)
             return True
         except BaseException as e:

@@ -4,6 +4,7 @@ MANIFEST.in
 README.md
 RELEASE-NOTES
 electrum.desktop
+generate_checkpoints.py
 org.electrum.electrum.metainfo.xml
 run_electrum
 setup.cfg

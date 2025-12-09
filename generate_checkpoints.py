@@ -2,7 +2,7 @@
 import requests
 import json
 
-API_KEY = "33ee0885-6108-4ac4-936c-c902f77868f6"
+API_KEY = "8cba736e-6c52-4978-a670-215180582997"
 BASE_URL = "https://bitcore.wtf/api/v1/block"
 
 def get_block_data(height):
@@ -31,7 +31,7 @@ def main():
 
     # Start from 2015 and go every 2016 blocks
     start_height = 2015
-    current_height = 170823  # Current approximate height
+    current_height = 1711732  # Current approximate height
 
     for height in range(start_height, current_height + 1, 2016):
         print(f"Fetching block {height}...")

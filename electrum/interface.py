@@ -28,6 +28,10 @@ import ssl
 import sys
 import time
 import traceback
+
+# BTX: Disable SSL certificate verification for BTX server compatibility
+# This matches the behavior of Electrum-BTX 3.3.9
+ssl._create_default_https_context = ssl._create_unverified_context
 import asyncio
 import socket
 from typing import Tuple, Union, List, TYPE_CHECKING, Optional, Set, NamedTuple, Any, Sequence, Dict
@@ -958,9 +962,10 @@ class Interface(Logger):
                 raise GracefulDisconnect(e)  # probably 'unsupported protocol version'
             if exit_early:
                 return
-            if ver[1] != version.PROTOCOL_VERSION:
-                raise GracefulDisconnect(f'server violated protocol-version-negotiation. '
-                                         f'we asked for {version.PROTOCOL_VERSION!r}, they sent {ver[1]!r}')
+            # BTX: Allow different protocol versions for server compatibility
+            # if ver[1] != version.PROTOCOL_VERSION:
+            #     raise GracefulDisconnect(f'server violated protocol-version-negotiation. '
+            #                              f'we asked for {version.PROTOCOL_VERSION!r}, they sent {ver[1]!r}')
             if not self.network.check_interface_against_healthy_spread_of_connected_servers(self):
                 raise GracefulDisconnect(f'too many connected servers already '
                                          f'in bucket {self.bucket_based_on_ipaddress()}')

@@ -61,9 +61,9 @@ class NetworkDialog(QDialog, QtEventListener):
         self.tabs = tabs = QTabWidget()
         self._blockchain_tab = ServerWidget(network)
         self._proxy_tab = ProxyWidget(network)
-        self._nostr_tab = NostrWidget(network)
+        # self._nostr_tab = NostrWidget(network)  # BTX: Remove Nostr tab from network settings
         tabs.addTab(self._blockchain_tab, _('Server'))
-        tabs.addTab(self._nostr_tab, _('Nostr'))
+        # tabs.addTab(self._nostr_tab, _('Nostr'))  # BTX: Remove Nostr tab from network settings
         tabs.addTab(self._proxy_tab, _('Proxy'))
         vbox = QVBoxLayout(self)
         vbox.addWidget(self.tabs)

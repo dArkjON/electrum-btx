@@ -48,6 +48,13 @@ contrib/.venv_make_packages/
 # shared objects
 electrum/*.so
 electrum/*.so.*
+
+# BTX development files
+.grok/
+*.log
+debug_*
+test_*
+start_*
 electrum/*.dll
 electrum/*.dylib
 contrib/osx/*.dylib
